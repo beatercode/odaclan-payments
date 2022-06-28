@@ -5,11 +5,8 @@ const axios = require('axios')
 import Swal from 'sweetalert2'
 import { format, add } from 'date-fns'
 
-const odaClanLogoLoader = ({ src, width, quality }) => {
-  return `https://cdn.discordapp.com/emojis/987277668770803722.webp?size=240&quality=lossless`
-}
-
 export default function Home() {
+
   const baseCurrentPrice = 27
   const [hasMounted, setHasMounted] = useState(false)
   const [isTimeframeSelected, setIsTimeframeSelected] = useState(false)

@@ -5,7 +5,7 @@ exports.id = 888;
 exports.ids = [888];
 exports.modules = {
 
-/***/ 408:
+/***/ 765:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 // ESM COMPAT FLAG
@@ -44,16 +44,37 @@ class Footer extends external_react_.Component {
 }
 /* harmony default export */ const components_Footer = (Footer);
 
+;// CONCATENATED MODULE: external "@chakra-ui/theme-tools"
+const theme_tools_namespaceObject = require("@chakra-ui/theme-tools");
+;// CONCATENATED MODULE: ./libs/theme.js
+
+
+const styles = {
+    global: (props)=>({
+            body: {
+                bg: (0,theme_tools_namespaceObject.mode)("#1A202C", "#1A202C")(props)
+            }
+        })
+};
+const colors = {
+    primary: "#e29578"
+};
+const theme = (0,react_.extendTheme)({
+    styles,
+    colors
+});
+/* harmony default export */ const libs_theme = (theme);
+
 ;// CONCATENATED MODULE: ./pages/_app.js
+
 
 
 
 
 function MyApp({ Component , pageProps  }) {
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.ChakraProvider, {
-        style: {
-            backgroundColor: "#1A202C !important"
-        },
+        theme: libs_theme,
+        cssVarsRoot: "body",
         children: [
             /*#__PURE__*/ jsx_runtime_.jsx(Component, {
                 ...pageProps
@@ -95,7 +116,7 @@ module.exports = require("react/jsx-runtime");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(408));
+var __webpack_exports__ = (__webpack_exec__(765));
 module.exports = __webpack_exports__;
 
 })();
