@@ -289,7 +289,8 @@ export default function Home() {
               <Flex mb={2} mt={6}>
 
                 <Button value="2" size='xs' width="400px" height="50px" ml={2}
-                  onClick={() => goPaymentDatails()}>
+                  onClick={() => goPaymentDatails()}
+                  style={{ background: "rgba(255, 255, 255, 0.08) !important", color: "inherit !important" }}>
                   NEXT
                 </Button>
 
@@ -342,7 +343,8 @@ export default function Home() {
                   </Flex>
                   <Flex mb={2}>
                     <Input value={receiverWallet} isReadOnly />
-                    <Button onClick={onCopy} ml={2}>
+                    <Button onClick={onCopy} ml={2}
+                      style={{ background: "rgba(255, 255, 255, 0.08) !important", color: "inherit !important" }}>
                       {hasCopied ? 'Copied' : 'Copy'}
                     </Button>
                   </Flex>
@@ -374,8 +376,10 @@ export default function Home() {
                     <Text fontWeight="700" color="orange">Review you data and click next button</Text>
                   </Flex>
                   <Flex mb={2}>
-                    <Button width="95vw" onClick={goBackToTimeframe} mr={2}>BACK</Button>
-                    <Button width="95vw" onClick={askConfirmation} ml={2}>NEXT</Button>
+                    <Button width="95vw" onClick={goBackToTimeframe} mr={2}
+                      style={{ background: "rgba(255, 255, 255, 0.08) !important", color: "inherit !important" }}>BACK</Button>
+                    <Button width="95vw" onClick={askConfirmation} ml={2}
+                      style={{ background: "rgba(255, 255, 255, 0.08) !important", color: "inherit !important" }}>NEXT</Button>
                   </Flex>
                 </Stack>
               </FormControl>
