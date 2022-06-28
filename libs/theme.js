@@ -11,7 +11,7 @@ const styles = {
 };
 
 const colors = {
-    primary: "#e29578",
+    primary: "#1A202C",
 };
 
 const theme = extendTheme({ styles, colors });

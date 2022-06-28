@@ -52,12 +52,13 @@ const theme_tools_namespaceObject = require("@chakra-ui/theme-tools");
 const styles = {
     global: (props)=>({
             body: {
-                bg: (0,theme_tools_namespaceObject.mode)("#1A202C", "#1A202C")(props)
+                bg: (0,theme_tools_namespaceObject.mode)("#1A202C", "#1A202C")(props),
+                color: (0,theme_tools_namespaceObject.mode)("#ffffff", "#ffffff")(props)
             }
         })
 };
 const colors = {
-    primary: "#e29578"
+    primary: "#1A202C"
 };
 const theme = (0,react_.extendTheme)({
     styles,
