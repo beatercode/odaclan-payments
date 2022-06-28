@@ -51,6 +51,9 @@ class Footer extends external_react_.Component {
 
 function MyApp({ Component , pageProps  }) {
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.ChakraProvider, {
+        style: {
+            backgroundColor: "#1A202C !important"
+        },
         children: [
             /*#__PURE__*/ jsx_runtime_.jsx(Component, {
                 ...pageProps
