@@ -39,3 +39,8 @@ a {
     transform: rotate(360deg);
   }
 }
+
+button {
+  background-color: "var(--chakra-colors-whiteAlpha-200) !important";
+  color: "inherit !important";
+}
