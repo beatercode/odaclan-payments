@@ -5,7 +5,7 @@ exports.id = 888;
 exports.ids = [888];
 exports.modules = {
 
-/***/ 206:
+/***/ 408:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 // ESM COMPAT FLAG
@@ -22,7 +22,7 @@ var jsx_runtime_ = __webpack_require__(997);
 var react_ = __webpack_require__(930);
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__(689);
-;// CONCATENATED MODULE: ./components/footer.js
+;// CONCATENATED MODULE: ./components/Footer.js
 
 
 
@@ -42,7 +42,7 @@ class Footer extends external_react_.Component {
         }));
     }
 }
-/* harmony default export */ const footer = (Footer);
+/* harmony default export */ const components_Footer = (Footer);
 
 ;// CONCATENATED MODULE: ./pages/_app.js
 
@@ -55,7 +55,7 @@ function MyApp({ Component , pageProps  }) {
             /*#__PURE__*/ jsx_runtime_.jsx(Component, {
                 ...pageProps
             }),
-            /*#__PURE__*/ jsx_runtime_.jsx(footer, {})
+            /*#__PURE__*/ jsx_runtime_.jsx(components_Footer, {})
         ]
     });
 }
@@ -92,7 +92,7 @@ module.exports = require("react/jsx-runtime");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(206));
+var __webpack_exports__ = (__webpack_exec__(408));
 module.exports = __webpack_exports__;
 
 })();
