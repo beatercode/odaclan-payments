@@ -22,6 +22,7 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false)
 
   const { hasCopied, onCopy } = useClipboard(receiverWallet)
+  const { hasCopiedPrice, onCopyPrice } = useClipboard(requiredCoin)
 
   const handleSenderWalletChange = (e) => {
     setSenderWallet(e.target.value);
@@ -100,7 +101,6 @@ export default function Home() {
           "coin": usedCoin,
           "toPayUSD": parseFloat(currentPrice),
           "toPayCrypto": parseFloat(requiredCoin),
-          //"toPayCrypto": parseFloat(requiredCoin)/10,
           "fromWallet": senderWallet,
           "toWallet": receiverWallet,
           "dateStart": format(new Date(), 'yyyy-MM-dd'),
@@ -267,23 +267,20 @@ export default function Home() {
             <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={10}>
 
               <Flex mb={2} mt={6}>
-                <Button id="timeframe1" value="1" size='xs' width="200px" height="100px" mr={2} fontSize="1.5em"
+                <Button id="timeframe2" value="2" size='xs' width="200px" height="100px" mr={2} fontSize="1.5em"
+                  onClick={(e) => handleTimeframeChange(e)}>
+                  YEARLY
+                </Button>
+                <Button id="timeframe1" value="1" size='xs' width="200px" height="100px" ml={2} fontSize="1.5em"
                   style={{ color: "#292929", backgroundColor: "#FFFF00" }}
                   onClick={(e) => handleTimeframeChange(e)}>
                   MONTHLY
                 </Button>
-                <Button id="timeframe2" value="2" size='xs' width="200px" height="100px" ml={2} fontSize="1.5em"
-                  onClick={(e) => handleTimeframeChange(e)}>
-                  YEARLY
-                </Button>
               </Flex>
 
-              <Input value="Feature decente" isReadOnly mb={3} mt={5} />
-              <Input value="Feature onesta" isReadOnly mb={3} />
-              <Input isDisabled={selectedTimeframe == 1} value="Feature devastante" isReadOnly mb={3} />
-              <Input isDisabled={selectedTimeframe == 1} value="Feature assurda" isReadOnly mb={3} />
-              <Input isDisabled={selectedTimeframe == 1} value="Feature incredibile" isReadOnly mb={3} />
-              <Input isDisabled={selectedTimeframe == 1} value="Feature suprema" isReadOnly mb={3} />
+              <Input value={"✅ " + (selectedTimeframe == 1 ? "27 Monthly" : "270 Yearly")} isReadOnly mb={3} mt={5} />
+              <Input isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 2 Free month"} isReadOnly mb={3} />
+              <Input isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 3 guaranteed whitelist"} isReadOnly mb={3} />
 
 
               <Flex mb={2} mt={6}>
@@ -348,7 +345,7 @@ export default function Home() {
                   </Flex>
 
                   <Flex mb={2}>
-                    <Text fontWeight="700">Wich wallet do yuo use to send the payment?</Text>
+                    <Text fontWeight="700">Wich wallet do you use to send the payment?</Text>
                   </Flex>
                   <Flex mb={2}>
                     <Input value={senderWallet} onChange={handleSenderWalletChange} />
@@ -362,12 +359,15 @@ export default function Home() {
                   </Flex>
 
                   <Flex mb={2}>
-                    <Text fontWeight="700" width="60%">Price</Text>
+                    <Text fontWeight="700" width="45%">Price</Text>
                     <Text fontWeight="700">Coin Price</Text>
                   </Flex>
                   <Flex mb={2}>
-                    <Input value={currentPrice + " USD"} isReadOnly width="40vw" />
+                    <Input value={currentPrice + " USD"} isReadOnly />
                     <Input value={requiredCoin} isReadOnly ml={2} />
+                    <Button onClick={onCopyPrice} ml={2}>
+                      {hasCopiedPrice ? 'Copied' : 'Copy'}
+                    </Button>
                   </Flex>
 
                   <Flex mb={2} style={{ marginTop: "10%" }}>
