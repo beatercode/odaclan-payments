@@ -1,4 +1,4 @@
-import { Button, Flex, FormControl, Select, Text, Stack, useClipboard, Input, Image, Divider } from '@chakra-ui/react'
+import { Button, Flex, FormControl, Select, Text, Textarea, Stack, useClipboard, Input, Image, Divider } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useState, useCallback } from 'react'
 const axios = require('axios')
@@ -269,25 +269,38 @@ export default function Home() {
               <Flex mb={2} mt={6}>
                 <Button id="timeframe2" value="2" size='xs' width="200px" height="100px" mr={2} fontSize="1.5em"
                   onClick={(e) => handleTimeframeChange(e)}>
-                  YEARLY
+                  <Text>
+                    YEARLY
+                    <p className='priceFont'>270 USD</p>
+                  </Text>
                 </Button>
                 <Button id="timeframe1" value="1" size='xs' width="200px" height="100px" ml={2} fontSize="1.5em"
                   style={{ color: "#292929", backgroundColor: "#FFFF00" }}
                   onClick={(e) => handleTimeframeChange(e)}>
-                  MONTHLY
+                  <Text>
+                    MONTHLY
+                    <p className='priceFont'>27 USD</p>
+                  </Text>
                 </Button>
               </Flex>
 
-              <Input value={"✅ " + (selectedTimeframe == 1 ? "27 Monthly" : "270 Yearly")} isReadOnly mb={3} mt={5} />
-              <Input isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 2 Free month"} isReadOnly mb={3} />
-              <Input isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 3 guaranteed whitelist"} isReadOnly mb={3} />
-
-
+              <Textarea rows={1} resize={"none"} value={"✅ 3 guaranteed whitelist"} isReadOnly mb={3} mt={5} />
+              <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, premium NFTs projects and Crypto analysis"} isReadOnly mb={3} />
+              <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, periodic giveaways from the best projects"} isReadOnly mb={3} />
+              <Textarea rows={1} resize={"none"} value={"✅ Private chatroom"} isReadOnly mb={3} />
+              <Textarea rows={1} resize={"none"} value={"✅ Personal profile picture"} isReadOnly mb={3} />
+              <Textarea rows={"auto"} resize={"none"} value={"✅ Access to the incoming ODA Clan NFTs collection’s whitelist"} isReadOnly mb={3} />
+              <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive 10 rules guide to invest efficiently in the Crypto and NFTs world"} isReadOnly mb={3} />
+              <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive access to bots and software currently in development"} isReadOnly mb={3} />
+              <Textarea rows={1} resize={"none"} value={"✅ Priority 360° support"} isReadOnly mb={3} />
+              <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 2 Free month"} isReadOnly mb={3} />
+              <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " Premium meeting with team"} isReadOnly mb={3} />
+              
               <Flex mb={2} mt={6}>
 
-                <Button value="2" size='xs' width="400px" height="50px" ml={2}
+                <Button value="2" width="400px" height="50px" ml={2}
                   onClick={() => goPaymentDatails()}>
-                  NEXT
+                  NEXT 🥋
                 </Button>
 
               </Flex>
@@ -371,11 +384,11 @@ export default function Home() {
                   </Flex>
 
                   <Flex mb={2} style={{ marginTop: "10%" }}>
-                    <Text fontWeight="700" color="orange">Review you data and click next button</Text>
+                    <Text fontWeight="700" color="orange">Review your data and click next button</Text>
                   </Flex>
                   <Flex mb={2}>
                     <Button width="95vw" onClick={goBackToTimeframe} mr={2}>BACK</Button>
-                    <Button width="95vw" onClick={askConfirmation} ml={2}>NEXT</Button>
+                    <Button width="95vw" onClick={askConfirmation} ml={2}>NEXT 🥋</Button>
                   </Flex>
                 </Stack>
               </FormControl>

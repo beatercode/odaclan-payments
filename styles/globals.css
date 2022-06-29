@@ -44,3 +44,7 @@ button {
   background-color: "var(--chakra-colors-whiteAlpha-200) !important";
   color: "inherit !important";
 }
+
+.priceFont {
+  font-size: 0.55em;
+}
