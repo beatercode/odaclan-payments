@@ -10,6 +10,7 @@ export default function Home() {
   const baseCurrentPrice = 27
   const [hasMounted, setHasMounted] = useState(false)
   const [isTimeframeSelected, setIsTimeframeSelected] = useState(false)
+  const [methodSelected, setMethodSelected] = useState(0)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedTimeframe, setSelectedTimeframe] = useState(0)
   const [currentPrice, setCurrentPrice] = useState(0)
@@ -34,7 +35,7 @@ export default function Home() {
 
   const handleTimeframeChange = useCallback((e) => {
 
-    if (Number(e.target.value) == 1) {
+    if (Number(e) == 1) {
       if (document.getElementById("timeframe1")) document.getElementById("timeframe1").style.backgroundColor = "#FFFF00";
       if (document.getElementById("timeframe1")) document.getElementById("timeframe1").style.color = "#292929";
       if (document.getElementById("timeframe2")) document.getElementById("timeframe2").style.backgroundColor = "var(--chakra-colors-whiteAlpha-200)";
@@ -46,10 +47,28 @@ export default function Home() {
       if (document.getElementById("timeframe1")) document.getElementById("timeframe1").style.color = "inherit";
     }
     setIsSubmitting(true)
-    setSelectedTimeframe(Number(e.target.value))
-    const newMul = (Number(e.target.value)) == 1 ? 1 : 10
+    setSelectedTimeframe(Number(e))
+    const newMul = (Number(e)) == 1 ? 1 : 10
     const newPrice = baseCurrentPrice * newMul
     setCurrentPrice(parseFloat(newPrice))
+    setIsSubmitting(false)
+  }, [])
+
+  const handlePaymentMethodChange = useCallback((e) => {
+
+    if (Number(e) == 1) {
+      if (document.getElementById("paymentMethod1")) document.getElementById("paymentMethod1").style.backgroundColor = "#FFFF00";
+      if (document.getElementById("paymentMethod1")) document.getElementById("paymentMethod1").style.color = "#292929";
+      if (document.getElementById("paymentMethod2")) document.getElementById("paymentMethod2").style.backgroundColor = "var(--chakra-colors-whiteAlpha-200)";
+      if (document.getElementById("paymentMethod2")) document.getElementById("paymentMethod2").style.color = "inherit";
+    } else {
+      if (document.getElementById("paymentMethod2")) document.getElementById("paymentMethod2").style.backgroundColor = "#FFFF00";
+      if (document.getElementById("paymentMethod2")) document.getElementById("paymentMethod2").style.color = "#292929";
+      if (document.getElementById("paymentMethod1")) document.getElementById("paymentMethod1").style.backgroundColor = "var(--chakra-colors-whiteAlpha-200)";
+      if (document.getElementById("paymentMethod1")) document.getElementById("paymentMethod1").style.color = "inherit";
+    }
+    setIsSubmitting(true)
+    setMethodSelected(Number(e))
     setIsSubmitting(false)
   }, [])
 
@@ -227,7 +246,7 @@ export default function Home() {
 
   useEffect(() => {
     setHasMounted(true);
-    handleTimeframeChange({ target: { value: "1" } });
+    handleTimeframeChange(1);
   }, [handleTimeframeChange]);
   if (!hasMounted) {
     return null;
@@ -259,151 +278,178 @@ export default function Home() {
         </Text>
       </Flex>
 
+      <>
+        <Flex mb={2} mt={6}>
+          <Button id="paymentMethod1" value="1" size='xs' width="250px" height="60px" mr={2} fontSize="1.5em"
+            style={{ color: "#292929", backgroundColor: "#FFFF00" }}
+            onClick={(e) => { handlePaymentMethodChange(1) }}>
+            <Text>
+              CRYPTO
+            </Text>
+          </Button>
+          <Button id="paymentMethod2" value="2" size='xs' width="250px" height="60px" ml={2} fontSize="1.5em"
+            onClick={(e) => { handlePaymentMethodChange(2) }}>
+            <Text>
+              C.CARD
+            </Text>
+          </Button>
+        </Flex>
+      </>
+
       {!isSubmitting ?
-
-        !isTimeframeSelected ?
-
+        methodSelected == 1 ?
           <>
-            <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={10}>
+            {!isTimeframeSelected ?
+              <>
+                <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={10}>
 
-              <Flex mb={2} mt={6}>
-                <Button id="timeframe2" value="2" size='xs' width="200px" height="100px" mr={2} fontSize="1.5em"
-                  onClick={(e) => handleTimeframeChange(e)}>
-                  <Text>
-                    YEARLY
-                    <p className='priceFont'>270 USD</p>
-                  </Text>
-                </Button>
-                <Button id="timeframe1" value="1" size='xs' width="200px" height="100px" ml={2} fontSize="1.5em"
-                  style={{ color: "#292929", backgroundColor: "#FFFF00" }}
-                  onClick={(e) => handleTimeframeChange(e)}>
-                  <Text>
-                    MONTHLY
-                    <p className='priceFont'>27 USD</p>
-                  </Text>
-                </Button>
-              </Flex>
+                  <Flex mb={2} mt={6}>
+                    <Button id="timeframe2" value="2" size='xs' width="200px" height="100px" mr={2} fontSize="1.5em"
+                      onClick={(e) => { handleTimeframeChange(2) }}>
+                      <Text>
+                        YEARLY
+                        <p className='priceFont'>270 USD</p>
+                      </Text>
+                    </Button>
+                    <Button id="timeframe1" value="1" size='xs' width="200px" height="100px" ml={2} fontSize="1.5em"
+                      style={{ color: "#292929", backgroundColor: "#FFFF00" }}
+                      onClick={(e) => { handleTimeframeChange(1) }}>
+                      <Text>
+                        MONTHLY
+                        <p className='priceFont'>27 USD</p>
+                      </Text>
+                    </Button>
+                  </Flex>
 
-              <Textarea rows={1} resize={"none"} value={"✅ 3 guaranteed whitelist"} isReadOnly mb={3} mt={5} />
-              <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, premium NFTs projects and Crypto analysis"} isReadOnly mb={3} />
-              <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, periodic giveaways from the best projects"} isReadOnly mb={3} />
-              <Textarea rows={1} resize={"none"} value={"✅ Private chatroom"} isReadOnly mb={3} />
-              <Textarea rows={1} resize={"none"} value={"✅ Personal profile picture"} isReadOnly mb={3} />
-              <Textarea rows={"auto"} resize={"none"} value={"✅ Access to the incoming ODA Clan NFTs collection’s whitelist"} isReadOnly mb={3} />
-              <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive 10 rules guide to invest efficiently in the Crypto and NFTs world"} isReadOnly mb={3} />
-              <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive access to bots and software currently in development"} isReadOnly mb={3} />
-              <Textarea rows={1} resize={"none"} value={"✅ Priority 360° support"} isReadOnly mb={3} />
-              <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 2 Free month"} isReadOnly mb={3} />
-              <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " Premium meeting with team"} isReadOnly mb={3} />
-              
-              <Flex mb={2} mt={6}>
+                  <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, premium NFTs projects and Crypto analysis"} isReadOnly mb={3} mt={4} />
+                  <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, periodic giveaways from the best projects"} isReadOnly mb={3} />
+                  <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive info regarding new events (whitelists, strategies, flash events, etc...)"} isReadOnly mb={3} />
+                  <Textarea rows={1} resize={"none"} value={"✅ Private chatroom"} isReadOnly mb={3} />
+                  <Textarea rows={1} resize={"none"} value={"✅ Personal profile picture"} isReadOnly mb={3} />
+                  <Textarea rows={"auto"} resize={"none"} value={"✅ Access to the incoming ODA Clan NFTs collection’s whitelist"} isReadOnly mb={3} />
+                  <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive 10 rules guide to invest efficiently in the Crypto and NFTs world"} isReadOnly mb={3} />
+                  <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive access to bots and software currently in development"} isReadOnly mb={3} />
+                  <Textarea rows={"auto"} resize={"none"} value={"✅ Priority 360° support (1-to-1 by custom ticket)"} isReadOnly mb={3} />
+                  <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 3 guaranteed whitelist"} isReadOnly mb={3} />
+                  <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 2 Free month"} isReadOnly mb={3} />
+                  <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " Premium meeting with team"} isReadOnly mb={3} />
 
-                <Button value="2" width="400px" height="50px" ml={2}
-                  onClick={() => goPaymentDatails()}>
-                  NEXT 🥋
-                </Button>
+                  <Flex mb={2} mt={6}>
 
-              </Flex>
-            </FormControl>
-          </>
+                    <Button value="2" width="400px" height="50px" ml={2}
+                      onClick={() => goPaymentDatails()}>
+                      NEXT 🥋
+                    </Button>
 
-          :
+                  </Flex>
+                </FormControl>
+              </>
+              :
+              <>
+                <Flex
+                  id="cryptoZone"
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                  width="100vw"
+                  height="fit-content"
+                  mt="60px">
 
-          <>
-            <Flex
-              id="cryptoZone"
-              direction="column"
-              justifyContent="center"
-              alignItems="center"
-              width="100vw"
-              height="fit-content"
-              mt="60px">
+                  <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red">
+                    {!isLoaded ? valuesRefresh() : ""}
+                    <Flex mb={2} style={{ marginTop: "10%" }}>
+                      <Text fontWeight="700" color="orange">If you need to use a chain/coin not listed, please contact support via
+                        <><a
+                          style={{ marginLeft: "3px", textDecoration: "underline", color: "orange" }}
+                          href="https://discord.gg/odaclan">ticket
+                        </a></>
+                      </Text>
+                    </Flex>
+                    <Stack spacing={3} mt={4}>
+                      <Text fontWeight="700">Wich crypto you want to use?</Text>
+                      <Select onChange={(e) => targetCoinChange(e)}>
+                        <option value="TEST-ETH">TEST ETH</option>
+                        <option value="TEST-BUSD">TEST BUSD</option>
+                        <option value="TEST-SOL">TEST SOL</option>
+                        <Divider />
+                        <option value="ETH">ETH  | Ethereum</option>
+                        <option value="USDC">USDC | Ethereum</option>
+                        <option value="USDT-ETH">USDT | Ethereum</option>
+                        <option value="BUSD-ETH">BUSD | Ethereum</option>
+                        <Divider />
+                        <option value="BNB">BNB  | Binance Smart Chain</option>
+                        <option value="USDT-BSC">USDT | Binance Smart Chain</option>
+                        <option value="BUSD-BSC">BUSD | Binance Smart Chain</option>
+                        <Divider />
+                        <option value="SOL">SOL  | Solana</option>
+                      </Select>
+                      <Flex mb={2}>
+                        <Text fontWeight="700">Send to wallet:</Text>
+                      </Flex>
+                      <Flex mb={2}>
+                        <Input value={receiverWallet} isReadOnly />
+                        <Button onClick={onCopy} ml={2}>
+                          {hasCopied ? 'Copied' : 'Copy'}
+                        </Button>
+                      </Flex>
 
-              <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red">
-                {!isLoaded ? valuesRefresh() : ""}
-                <Flex mb={2} style={{ marginTop: "10%" }}>
-                  <Text fontWeight="700" color="orange">If you need to use a chain/coin not listed, please contact support via
-                    <><a
-                      style={{ marginLeft: "3px", textDecoration: "underline", color: "orange" }}
-                      href="https://discord.gg/odaclan">ticket
-                    </a></>
-                  </Text>
+                      <Flex mb={2}>
+                        <Text fontWeight="700">Wich wallet do you use to send the payment?</Text>
+                      </Flex>
+                      <Flex mb={2}>
+                        <Input value={senderWallet} onChange={handleSenderWalletChange} />
+                      </Flex>
+
+                      <Flex mb={2}>
+                        <Text fontWeight="700">Your email address used to receive the Licence code</Text>
+                      </Flex>
+                      <Flex mb={2}>
+                        <Input value={userMail} onChange={handleUserMailChange} />
+                      </Flex>
+
+                      <Flex mb={2}>
+                        <Text fontWeight="700" width="45%">Price</Text>
+                        <Text fontWeight="700">Coin Price</Text>
+                      </Flex>
+                      <Flex mb={2}>
+                        <Input value={currentPrice + " USD"} isReadOnly />
+                        <Input value={requiredCoin} isReadOnly ml={2} />
+                        <Button onClick={onCopyPrice} ml={2}>
+                          {hasCopiedPrice ? 'Copied' : 'Copy'}
+                        </Button>
+                      </Flex>
+
+                      <Flex mb={2} style={{ marginTop: "10%" }}>
+                        <Text fontWeight="700" color="orange">Review your data and click next button</Text>
+                      </Flex>
+                      <Flex mb={2}>
+                        <Button width="95vw" onClick={goBackToTimeframe} mr={2}>BACK</Button>
+                        <Button width="95vw" onClick={askConfirmation} ml={2}>NEXT 🥋</Button>
+                      </Flex>
+                    </Stack>
+                  </FormControl>
+
                 </Flex>
-                <Stack spacing={3} mt={4}>
-                  <Text fontWeight="700">Wich crypto you want to use?</Text>
-                  <Select onChange={(e) => targetCoinChange(e)}>
-                    <option value="TEST-ETH">TEST ETH</option>
-                    <option value="TEST-BUSD">TEST BUSD</option>
-                    <option value="TEST-SOL">TEST SOL</option>
-                    <Divider />
-                    <option value="ETH">ETH  | Ethereum</option>
-                    <option value="USDC">USDC | Ethereum</option>
-                    <option value="USDT-ETH">USDT | Ethereum</option>
-                    <option value="BUSD-ETH">BUSD | Ethereum</option>
-                    <Divider />
-                    <option value="BNB">BNB  | Binance Smart Chain</option>
-                    <option value="USDT-BSC">USDT | Binance Smart Chain</option>
-                    <option value="BUSD-BSC">BUSD | Binance Smart Chain</option>
-                    <Divider />
-                    <option value="SOL">SOL  | Solana</option>
-                  </Select>
-                  <Flex mb={2}>
-                    <Text fontWeight="700">Send to wallet:</Text>
-                  </Flex>
-                  <Flex mb={2}>
-                    <Input value={receiverWallet} isReadOnly />
-                    <Button onClick={onCopy} ml={2}>
-                      {hasCopied ? 'Copied' : 'Copy'}
-                    </Button>
-                  </Flex>
 
-                  <Flex mb={2}>
-                    <Text fontWeight="700">Wich wallet do you use to send the payment?</Text>
-                  </Flex>
-                  <Flex mb={2}>
-                    <Input value={senderWallet} onChange={handleSenderWalletChange} />
-                  </Flex>
+                <Flex
+                  id="fiatZone"
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                  width="100vw"
+                  height="fit-content"
+                  mb={10}>
 
-                  <Flex mb={2}>
-                    <Text fontWeight="700">Your email address used to receive the Licence code</Text>
-                  </Flex>
-                  <Flex mb={2}>
-                    <Input value={userMail} onChange={handleUserMailChange} />
-                  </Flex>
-
-                  <Flex mb={2}>
-                    <Text fontWeight="700" width="45%">Price</Text>
-                    <Text fontWeight="700">Coin Price</Text>
-                  </Flex>
-                  <Flex mb={2}>
-                    <Input value={currentPrice + " USD"} isReadOnly />
-                    <Input value={requiredCoin} isReadOnly ml={2} />
-                    <Button onClick={onCopyPrice} ml={2}>
-                      {hasCopiedPrice ? 'Copied' : 'Copy'}
-                    </Button>
-                  </Flex>
-
-                  <Flex mb={2} style={{ marginTop: "10%" }}>
-                    <Text fontWeight="700" color="orange">Review your data and click next button</Text>
-                  </Flex>
-                  <Flex mb={2}>
-                    <Button width="95vw" onClick={goBackToTimeframe} mr={2}>BACK</Button>
-                    <Button width="95vw" onClick={askConfirmation} ml={2}>NEXT 🥋</Button>
-                  </Flex>
-                </Stack>
-              </FormControl>
-
-            </Flex>
-
-            <Flex
-              id="fiatZone"
-              direction="column"
-              justifyContent="center"
-              alignItems="center"
-              width="100vw"
-              height="fit-content"
-              mb={10}>
-
+                </Flex>
+              </>
+            }
+          </>
+          :
+          <>
+            <Flex mb={2} mt={6}>
+              <Text>
+                Fiat Payment
+              </Text>
             </Flex>
           </>
         :
