@@ -37,6 +37,8 @@ class Footer extends external_react_.Component {
                 fontWeight: "700",
                 width: "100vw",
                 textAlign: "center",
+                mb: 5,
+                mt: 5,
                 children: "\xa9 ODA Clan DAO. All rights reserved"
             })
         }));

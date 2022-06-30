@@ -1,4 +1,4 @@
-import { Button, Flex, FormControl, Select, Text, Textarea, Stack, useClipboard, Input, Image, Divider } from '@chakra-ui/react'
+import { Button, Flex, FormControl, Select, Link, Text, Textarea, Stack, useClipboard, Input, Image, Divider } from '@chakra-ui/react'
 import { motion, AnimatePresence } from "framer-motion"
 import Head from 'next/head'
 import { useEffect, useState, useCallback } from 'react'
@@ -251,7 +251,7 @@ export default function Home() {
 
   useEffect(() => {
     setHasMounted(true);
-    handleTimeframeChange(1);
+    handleTimeframeChange(2);
   }, [handleTimeframeChange]);
   if (!hasMounted) {
     return null;
@@ -279,8 +279,11 @@ export default function Home() {
           width="100vw"
           height="fit-content"
           mt={10}>
-          <Text lineHeight="35px" textAlign="center" fontSize="3xl" fontWeight="800" color="white" padding={4}>
-            Welcome to <span style={{ color: "#FFFF00" }}>ODA Clan</span> payments portal
+          <Flex mt={2} id="odaLogo" width="100%" textAlign="center">
+            <Image margin={"auto"} width="90%" maxWidth="600px" src='https://i.imgur.com/P1z3KM3.png' alt="" />
+          </Flex>
+          <Text lineHeight="35px" textAlign="center" fontSize="2xl" fontWeight="800" color="white" mt={14}>
+            <span style={{ color: "#FFFF00" }}>SAMURAI </span> GATE
           </Text>
         </Flex>
 
@@ -291,7 +294,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 200 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -200 }}>
-                <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={14}>
+                <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={2}>
                   <Text fontSize="xl" textAlign={"center"}>
                     Hi Kyodai! Choose you payment method
                   </Text>
@@ -305,7 +308,7 @@ export default function Home() {
                     <Button id="paymentMethod2" value="2" size='xs' width="200px" height="100px" ml={2} fontSize="1.5em"
                       onClick={(e) => { handlePaymentMethodChange(2) }}>
                       <Text>
-                        C.CARD
+                        FIAT
                       </Text>
                     </Button>
                   </Flex>
@@ -328,7 +331,7 @@ export default function Home() {
                       initial={{ opacity: 0, y: 200 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -200 }}>
-                      <FormControl style={{ transition: "4s" }} isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={14}>
+                      <FormControl style={{ transition: "4s" }} isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={2}>
                         <Flex mb={2} mt={6}>
                           <Button id="paymentMethod1" size='xs' width="60px" height="35px" mr={2} fontSize="1.5em"
                             onClick={() => { goBackChooseMethod() }}>
@@ -337,7 +340,7 @@ export default function Home() {
                             </Text>
                           </Button>
                           <Button size='xs' width="100%" height="35px" ml={2} fontSize="1.5em"
-                            style={{ /*pointerEvents: "none", backgroundColor: "#FFFF00", color: "#292929"*/ }}>
+                            style={{ pointerEvents: "none" /*, backgroundColor: "#FFFF00", color: "#292929"*/ }}>
                             <Text>
                               {methodSelected == 1 ? "CRYPTO" : "FIAT"}
                             </Text>
@@ -346,23 +349,25 @@ export default function Home() {
 
                         <Flex mb={2} mt={6}>
                           <Button id="timeframe2" value="2" size='xs' width="200px" height="100px" mr={2} fontSize="1.5em"
+                            style={{ color: "#292929", backgroundColor: "#FFFF00" }}
                             onClick={(e) => { handleTimeframeChange(2) }}>
                             <Text>
                               YEARLY
-                              <p className='priceFont'>270 USD</p>
+                              <p className='priceFont'>97 USD</p>
                             </Text>
                           </Button>
                           <Button id="timeframe1" value="1" size='xs' width="200px" height="100px" ml={2} fontSize="1.5em"
-                            style={{ color: "#292929", backgroundColor: "#FFFF00" }}
                             onClick={(e) => { handleTimeframeChange(1) }}>
                             <Text>
                               MONTHLY
-                              <p className='priceFont'>27 USD</p>
+                              <p className='priceFont'>17 USD</p>
                             </Text>
                           </Button>
                         </Flex>
 
-                        <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, premium NFTs projects and Crypto analysis"} isReadOnly mb={3} mt={4} />
+                        <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 3 guaranteed whitelist"} isReadOnly mb={3} mt={4} />
+                        <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 50%+ discount"} isReadOnly mb={3} />
+                        <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, premium NFTs projects and Crypto analysis"} isReadOnly mb={3} />
                         <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, periodic giveaways from the best projects"} isReadOnly mb={3} />
                         <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive info regarding new events (whitelists, strategies, flash events, etc...)"} isReadOnly mb={3} />
                         <Textarea rows={1} resize={"none"} value={"✅ Private chatroom"} isReadOnly mb={3} />
@@ -371,13 +376,10 @@ export default function Home() {
                         <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive 10 rules guide to invest efficiently in the Crypto and NFTs world"} isReadOnly mb={3} />
                         <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive access to bots and software currently in development"} isReadOnly mb={3} />
                         <Textarea rows={"auto"} resize={"none"} value={"✅ Priority 360° support (1-to-1 by custom ticket)"} isReadOnly mb={3} />
-                        <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 3 guaranteed whitelist"} isReadOnly mb={3} />
-                        <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 2 Free month"} isReadOnly mb={3} />
-                        <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " Premium meeting with team"} isReadOnly mb={3} />
 
                         <Flex mb={2} mt={6}>
 
-                          <Button value="2" width="400px" height="50px" ml={2}
+                          <Button value="2" width="400px" height="50px" mb={35}
                             onClick={() => goPaymentDatails()}>
                             NEXT 🥋
                           </Button>
@@ -464,7 +466,7 @@ export default function Home() {
                           <Flex mb={2} style={{ marginTop: "10%" }}>
                             <Text fontWeight="700" color="orange">Review your data and click next button</Text>
                           </Flex>
-                          <Flex mb={2}>
+                          <Flex mb={35}>
                             <Button width="95vw" onClick={goBackToTimeframe} mr={2}>BACK</Button>
                             <Button width="95vw" onClick={askConfirmation} ml={2}>NEXT 🥋</Button>
                           </Flex>
@@ -481,7 +483,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 200 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -200 }}>
-                  <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={14}>
+                  <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={2}>
                     <Flex mb={2} mt={6}>
                       <Button id="paymentMethod1" size='xs' width="60px" height="35px" mr={2} fontSize="1.5em"
                         onClick={() => { goBackChooseMethod() }}>
@@ -490,7 +492,7 @@ export default function Home() {
                         </Text>
                       </Button>
                       <Button size='xs' width="100%" height="35px" ml={2} fontSize="1.5em"
-                        style={{ pointerEvents: "none", backgroundColor: "#FFFF00", color: "#292929" }}>
+                        style={{ pointerEvents: "none" /*, backgroundColor: "#FFFF00", color: "#292929"*/ }}>
                         <Text>
                           {methodSelected == 1 ? "CRYPTO" : "FIAT"}
                         </Text>
@@ -498,9 +500,20 @@ export default function Home() {
                     </Flex>
                     <Flex mb={2} mt={6}>
                       <Text>
-                        Fiat Payment
+                        YEARLY
                       </Text>
                     </Flex>
+                    <Link>
+                      https://hpr.co/m38ikmfLRaBsL93s0G153
+                    </Link>
+                    <Flex mb={2} mt={6}>
+                      <Text>
+                        MONTHLY
+                      </Text>
+                    </Flex>
+                    <Link>
+                      https://hpr.co/EoRIjkW4OPVsMFv3v0YXj
+                    </Link>
                   </FormControl>
                 </motion.div>
               </>

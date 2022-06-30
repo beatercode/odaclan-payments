@@ -12,7 +12,9 @@ class Footer extends Component {
                 <Text
                     fontWeight="700"
                     width="100vw"
-                    textAlign="center">
+                    textAlign="center"
+                    mb={5}
+                    mt={5}>
                     © ODA Clan DAO. All rights reserved
                 </Text>
             </Flex>
