@@ -302,7 +302,11 @@ export default function Home() {
                 exit={{ opacity: 0, y: -200 }}>
                 <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={4}>
                   <Text fontSize="xl" textAlign={"center"}>
-                    Hi Kyodai! 🥋 <br /> Choose your payment method
+                    You will be <span style={{ color: "#FFFF00" }}>tomorrow</span> what you <span style={{ color: "#FFFF00" }}>choose
+                    </span> to be <span style={{ color: "#FFFF00" }}>today</span> 🥋 
+                    <br />
+                    <br />
+                    Choose your payment method
                   </Text>
                   <Flex mb={2} mt={6}>
                     <Button id="paymentMethod1" value="1" size='xs' width="200px" height="100px" mr={2} fontSize="1.5em"
