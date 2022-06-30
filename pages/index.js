@@ -316,6 +316,9 @@ export default function Home() {
                       </Text>
                     </Button>
                   </Flex>
+                  <Flex mt={25}>
+                    <Image style={{  }} src='https://i.imgur.com/Q8SR9Lc.png' alt="" />
+                  </Flex>
                 </FormControl>
               </motion.div>
             </>
@@ -502,7 +505,7 @@ export default function Home() {
                         </Text>
                       </Button>
                     </Flex>
-                    
+
                     <Flex mb={2} mt={6}>
                       <Button id="timeframe2" value="2" size='xs' width="200px" height="100px" mr={2} fontSize="1.5em"
                         style={{ color: "#292929", backgroundColor: "#FFFF00" }}
