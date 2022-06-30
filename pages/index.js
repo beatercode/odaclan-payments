@@ -26,6 +26,38 @@ export default function Home() {
   const { hasCopied, onCopy } = useClipboard(receiverWallet)
   const { hasCopiedPrice, onCopyPrice } = useClipboard(requiredCoin)
 
+  const textFeaturesSamurai = (selectedTF) => {
+    return (
+      <>
+        <Textarea rows={1} resize={"none"} isDisabled={selectedTF == 1} value={(selectedTF == 1 ? "❌" : "✅") + " 3 guaranteed whitelist"} isReadOnly mb={3} mt={4} />
+        <Textarea rows={1} resize={"none"} isDisabled={selectedTF == 1} value={(selectedTF == 1 ? "❌" : "✅") + " 50%+ discount"} isReadOnly mb={3} />
+        <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, premium NFTs projects and Crypto analysis."} isReadOnly mb={3} />
+        <Textarea rows={"auto"} resize={"none"} value={"✅ Periodic, private WL giveaways from the best projects."} isReadOnly mb={3} />
+        <Textarea rows={1} resize={"none"} value={"✅ Private chatroom."} isReadOnly mb={3} />
+        <Textarea rows={"auto"} resize={"none"} value={"✅ Extensive info about new and incoming investing possibilities."} isReadOnly mb={3} />
+        <Textarea rows={1} resize={"none"} value={"✅ Personal profile picture."} isReadOnly mb={3} />
+        <Textarea rows={"auto"} resize={"none"} value={"✅ Priority 360° support (1to1 by custom ticket)."} isReadOnly mb={3} />
+        <Textarea rows={"auto"} resize={"none"} value={"✅ One of a kind 10 rules guide to invest efficiently in the Crypto and NFTs world."} isReadOnly mb={3} />
+        <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive access to bots and software currently in development."} isReadOnly mb={3} />
+        <Textarea rows={"auto"} resize={"none"} value={"✅ Access to the incoming ODA Clan NFTs collection’s whitelist"} isReadOnly mb={3} />
+      </>
+
+      /*
+      
+      ✅ Exclusive, premium NFTs projects and Crypto analysis.
+      ✅ Periodic, private WL giveaways from the best projects.
+      ✅ Private chatroom.
+      ✅ Extensive info about new and incoming investing possibilities.
+      ✅ Personal profile picture.
+      ✅ Priority 360° support at any time (support team member, one to one conversation by an always open custom ticket).
+      ✅ One of a kind 10 rules guide to invest efficiently in the Crypto and NFTs world.
+      ✅ Exclusive access to bots and software currently in development.
+      ✅ Access to the incoming ODA Clan NFTs collection’s whitelist.
+      
+      */
+    )
+  }
+
   const handleSenderWalletChange = (e) => {
     setSenderWallet(e.target.value);
   };
@@ -303,7 +335,7 @@ export default function Home() {
                 <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={4}>
                   <Text fontSize="xl" textAlign={"center"}>
                     You will be <span style={{ color: "#FFFF00" }}>tomorrow</span> what you <span style={{ color: "#FFFF00" }}>choose
-                    </span> to be <span style={{ color: "#FFFF00" }}>today</span> 🥋 
+                    </span> to be <span style={{ color: "#FFFF00" }}>today</span> 🥋
                     <br />
                     <br />
                     Choose your payment method
@@ -378,17 +410,7 @@ export default function Home() {
                           </Button>
                         </Flex>
 
-                        <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 3 guaranteed whitelist"} isReadOnly mb={3} mt={4} />
-                        <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 50%+ discount"} isReadOnly mb={3} />
-                        <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, premium NFTs projects and Crypto analysis"} isReadOnly mb={3} />
-                        <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, periodic giveaways from the best projects"} isReadOnly mb={3} />
-                        <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive info regarding new events (whitelists, strategies, flash events, etc...)"} isReadOnly mb={3} />
-                        <Textarea rows={1} resize={"none"} value={"✅ Private chatroom"} isReadOnly mb={3} />
-                        <Textarea rows={1} resize={"none"} value={"✅ Personal profile picture"} isReadOnly mb={3} />
-                        <Textarea rows={"auto"} resize={"none"} value={"✅ Access to the incoming ODA Clan NFTs collection’s whitelist"} isReadOnly mb={3} />
-                        <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive 10 rules guide to invest efficiently in the Crypto and NFTs world"} isReadOnly mb={3} />
-                        <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive access to bots and software currently in development"} isReadOnly mb={3} />
-                        <Textarea rows={"auto"} resize={"none"} value={"✅ Priority 360° support (1to1 by custom ticket)"} isReadOnly mb={3} />
+                        {textFeaturesSamurai(selectedTimeframe)}
 
                         <Flex mb={2} mt={6}>
 
@@ -530,17 +552,7 @@ export default function Home() {
                       </Button>
                     </Flex>
 
-                    <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 3 guaranteed whitelist"} isReadOnly mb={3} mt={4} />
-                    <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 50%+ discount"} isReadOnly mb={3} />
-                    <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, premium NFTs projects and Crypto analysis"} isReadOnly mb={3} />
-                    <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, periodic giveaways from the best projects"} isReadOnly mb={3} />
-                    <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive info regarding new events (whitelists, strategies, flash events, etc...)"} isReadOnly mb={3} />
-                    <Textarea rows={1} resize={"none"} value={"✅ Private chatroom"} isReadOnly mb={3} />
-                    <Textarea rows={1} resize={"none"} value={"✅ Personal profile picture"} isReadOnly mb={3} />
-                    <Textarea rows={"auto"} resize={"none"} value={"✅ Access to the incoming ODA Clan NFTs collection’s whitelist"} isReadOnly mb={3} />
-                    <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive 10 rules guide to invest efficiently in the Crypto and NFTs world"} isReadOnly mb={3} />
-                    <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive access to bots and software currently in development"} isReadOnly mb={3} />
-                    <Textarea rows={"auto"} resize={"none"} value={"✅ Priority 360° support (1to1 by custom ticket)"} isReadOnly mb={3} />
+                    {textFeaturesSamurai(selectedTimeframe)}
 
                     <Flex mb={2} mt={6}>
 
