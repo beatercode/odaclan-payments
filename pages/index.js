@@ -1,4 +1,4 @@
-import { Button, Flex, FormControl, Select, Link, Text, Textarea, Stack, useClipboard, Input, Image, Divider } from '@chakra-ui/react'
+import { Button, Flex, FormControl, Select, Link, Text, Textarea, Stack, useClipboard, Input, Image, Divider, ExternalLinkIcon } from '@chakra-ui/react'
 import { motion, AnimatePresence } from "framer-motion"
 import Head from 'next/head'
 import { useEffect, useState, useCallback } from 'react'
@@ -141,7 +141,6 @@ export default function Home() {
         'success'
       ).then((result) => {
         setIsSubmitting(false)
-        //window.location.replace("http://www.w3schools.com");
         window.location.reload()
       })
     } else {
@@ -244,6 +243,11 @@ export default function Home() {
     targetCoinChange({ target: { value: "ETH" } })
   }, [targetCoinChange])
 
+  const goFiatPaymentDatails = () => {
+    let url = selectedTimeframe == 1 ? "https://hpr.co/EoRIjkW4OPVsMFv3v0YXj" : "https://hpr.co/m38ikmfLRaBsL93s0G153";
+    window.open(url, '_blank').focus();
+  }
+
   const valuesRefresh = useCallback(() => {
     setIsLoaded(true)
     targetCoinChange({ target: { value: usedCoin } })
@@ -282,7 +286,7 @@ export default function Home() {
           <Flex mt={2} id="odaLogo" width="100%" textAlign="center">
             <Image margin={"auto"} width="90%" maxWidth="600px" src='https://i.imgur.com/P1z3KM3.png' alt="" />
           </Flex>
-          <Text lineHeight="35px" textAlign="center" fontSize="2xl" fontWeight="800" color="white" mt={14}>
+          <Text lineHeight="35px" textAlign="center" fontSize="2xl" fontWeight="800" color="white" mt={12}>
             <span style={{ color: "#FFFF00" }}>SAMURAI </span> GATE
           </Text>
         </Flex>
@@ -294,9 +298,9 @@ export default function Home() {
                 initial={{ opacity: 0, y: 200 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -200 }}>
-                <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={2}>
+                <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={4}>
                   <Text fontSize="xl" textAlign={"center"}>
-                    Hi Kyodai! Choose you payment method
+                    Hi Kyodai! 🥋 <br /> Choose your payment method
                   </Text>
                   <Flex mb={2} mt={6}>
                     <Button id="paymentMethod1" value="1" size='xs' width="200px" height="100px" mr={2} fontSize="1.5em"
@@ -331,7 +335,7 @@ export default function Home() {
                       initial={{ opacity: 0, y: 200 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -200 }}>
-                      <FormControl style={{ transition: "4s" }} isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={2}>
+                      <FormControl style={{ transition: "4s" }} isRequired width="95vw" maxWidth="350px" colorScheme="red" mt={4}>
                         <Flex mb={2} mt={6}>
                           <Button id="paymentMethod1" size='xs' width="60px" height="35px" mr={2} fontSize="1.5em"
                             onClick={() => { goBackChooseMethod() }}>
@@ -375,7 +379,7 @@ export default function Home() {
                         <Textarea rows={"auto"} resize={"none"} value={"✅ Access to the incoming ODA Clan NFTs collection’s whitelist"} isReadOnly mb={3} />
                         <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive 10 rules guide to invest efficiently in the Crypto and NFTs world"} isReadOnly mb={3} />
                         <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive access to bots and software currently in development"} isReadOnly mb={3} />
-                        <Textarea rows={"auto"} resize={"none"} value={"✅ Priority 360° support (1-to-1 by custom ticket)"} isReadOnly mb={3} />
+                        <Textarea rows={"auto"} resize={"none"} value={"✅ Priority 360° support (1to1 by custom ticket)"} isReadOnly mb={3} />
 
                         <Flex mb={2} mt={6}>
 
@@ -498,22 +502,45 @@ export default function Home() {
                         </Text>
                       </Button>
                     </Flex>
+                    
                     <Flex mb={2} mt={6}>
-                      <Text>
-                        YEARLY
-                      </Text>
+                      <Button id="timeframe2" value="2" size='xs' width="200px" height="100px" mr={2} fontSize="1.5em"
+                        style={{ color: "#292929", backgroundColor: "#FFFF00" }}
+                        onClick={(e) => { handleTimeframeChange(2) }}>
+                        <Text>
+                          YEARLY
+                          <p className='priceFont'>97 USD</p>
+                        </Text>
+                      </Button>
+                      <Button id="timeframe1" value="1" size='xs' width="200px" height="100px" ml={2} fontSize="1.5em"
+                        onClick={(e) => { handleTimeframeChange(1) }}>
+                        <Text>
+                          MONTHLY
+                          <p className='priceFont'>17 USD</p>
+                        </Text>
+                      </Button>
                     </Flex>
-                    <Link>
-                      https://hpr.co/m38ikmfLRaBsL93s0G153
-                    </Link>
+
+                    <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 3 guaranteed whitelist"} isReadOnly mb={3} mt={4} />
+                    <Textarea rows={1} resize={"none"} isDisabled={selectedTimeframe == 1} value={(selectedTimeframe == 1 ? "❌" : "✅") + " 50%+ discount"} isReadOnly mb={3} />
+                    <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, premium NFTs projects and Crypto analysis"} isReadOnly mb={3} />
+                    <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive, periodic giveaways from the best projects"} isReadOnly mb={3} />
+                    <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive info regarding new events (whitelists, strategies, flash events, etc...)"} isReadOnly mb={3} />
+                    <Textarea rows={1} resize={"none"} value={"✅ Private chatroom"} isReadOnly mb={3} />
+                    <Textarea rows={1} resize={"none"} value={"✅ Personal profile picture"} isReadOnly mb={3} />
+                    <Textarea rows={"auto"} resize={"none"} value={"✅ Access to the incoming ODA Clan NFTs collection’s whitelist"} isReadOnly mb={3} />
+                    <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive 10 rules guide to invest efficiently in the Crypto and NFTs world"} isReadOnly mb={3} />
+                    <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive access to bots and software currently in development"} isReadOnly mb={3} />
+                    <Textarea rows={"auto"} resize={"none"} value={"✅ Priority 360° support (1to1 by custom ticket)"} isReadOnly mb={3} />
+
                     <Flex mb={2} mt={6}>
-                      <Text>
-                        MONTHLY
-                      </Text>
+
+                      <Button value="2" width="400px" height="50px" mb={35}
+                        onClick={() => goFiatPaymentDatails()}>
+                        NEXT 🥋
+                      </Button>
+
                     </Flex>
-                    <Link>
-                      https://hpr.co/EoRIjkW4OPVsMFv3v0YXj
-                    </Link>
                   </FormControl>
                 </motion.div>
               </>
