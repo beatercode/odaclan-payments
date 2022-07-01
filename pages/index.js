@@ -456,7 +456,7 @@ export default function Home() {
                           </Text>
                         </Flex>
                         <Stack spacing={3} mt={4}>
-                          <Text fontWeight="700">Select your blockchain and crypto of choice</Text>
+                          <Text fontWeight="700">Select your blockchain and crypto of choice:</Text>
                           <Select onChange={(e) => targetCoinChange(e)}>
                             <option value="TEST-ETH">TEST ETH</option>
                             <option value="TEST-BUSD">TEST BUSD</option>
@@ -491,7 +491,7 @@ export default function Home() {
                           </Flex>
 
                           <Flex mb={2}>
-                            <Text fontWeight="700">Insert the email where you want to receive the link to finalize the payment (to get the role on DS).</Text>
+                            <Text fontWeight="700">Insert the email where you want to receive the link to finalize the payment (to get the role on DS):</Text>
                           </Flex>
                           <Flex mb={2}>
                             <Input value={userMail} onChange={handleUserMailChange} />
