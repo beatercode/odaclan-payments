@@ -504,7 +504,7 @@ export default function Home() {
                           <Flex mb={2}>
                             <Input value={currentPrice + " USD"} isReadOnly />
                             <Input value={requiredCoin} isReadOnly ml={2} />
-                            <Button width={"150px"} onClick={() => { navigator.clipboard.writeText(requiredCoin); setHasCopiedCoin(true); timerResetCopiedCoin(); }} ml={2}>
+                            <Button width={"150px"} onClick={() => { navigator.clipboard.writeText(parseFloat(requiredCoin)); setHasCopiedCoin(true); timerResetCopiedCoin(); }} ml={2}>
                               {hasCopiedCoin ? "Copied" : "Copy"}
                             </Button>
                           </Flex>
