@@ -8,7 +8,7 @@ import { format, add } from 'date-fns'
 
 export default function Home() {
 
-  const baseCurrentPrice = 27
+  const baseCurrentPrice = 17
   const [hasMounted, setHasMounted] = useState(false)
   const [isTimeframeSelected, setIsTimeframeSelected] = useState(false)
   const [methodSelected, setMethodSelected] = useState(0)
@@ -22,9 +22,20 @@ export default function Home() {
   const [usedChain, setUsedChain] = useState('')
   const [requiredCoin, setRequiredCoin] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [hasCopied, setHasCopied] = useState(false)
+  const [hasCopiedCoin, setHasCopiedCoin] = useState(false)
 
-  const { hasCopied, onCopy } = useClipboard(receiverWallet)
-  const { hasCopiedPrice, onCopyPrice } = useClipboard(requiredCoin)
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+
+  const timerResetCopiedCoin = async () => {
+    await delay(1300);
+    setHasCopiedCoin(false);
+  }
+
+  const timerResetCopie = async () => {
+    await delay(1300);
+    setHasCopied(false);
+  }
 
   const textFeaturesSamurai = (selectedTF) => {
     return (
@@ -82,7 +93,7 @@ export default function Home() {
     setIsSubmitting(true)
     setSelectedTimeframe(Number(e))
     const newMul = (Number(e)) == 1 ? 1 : 10
-    const newPrice = baseCurrentPrice * newMul
+    const newPrice = (Number(e)) == 1 ? baseCurrentPrice : 97
     setCurrentPrice(parseFloat(newPrice))
     setIsSubmitting(false)
   }, [])
@@ -432,7 +443,7 @@ export default function Home() {
                       alignItems="center"
                       width="100vw"
                       height="fit-content"
-                      mt="60px">
+                      mt="30px">
 
                       <FormControl isRequired width="95vw" maxWidth="350px" colorScheme="red">
                         {!isLoaded ? valuesRefresh() : ""}
@@ -445,7 +456,7 @@ export default function Home() {
                           </Text>
                         </Flex>
                         <Stack spacing={3} mt={4}>
-                          <Text fontWeight="700">Wich crypto you want to use?</Text>
+                          <Text fontWeight="700">Select your blockchain and crypto of choice</Text>
                           <Select onChange={(e) => targetCoinChange(e)}>
                             <option value="TEST-ETH">TEST ETH</option>
                             <option value="TEST-BUSD">TEST BUSD</option>
@@ -467,41 +478,41 @@ export default function Home() {
                           </Flex>
                           <Flex mb={2}>
                             <Input value={receiverWallet} isReadOnly />
-                            <Button onClick={onCopy} ml={2}>
-                              {hasCopied ? 'Copied' : 'Copy'}
+                            <Button onClick={() => { navigator.clipboard.writeText(receiverWallet); setHasCopied(true); timerResetCopie(); }} ml={2}>
+                              {hasCopied ? "Copied" : "Copy"}
                             </Button>
                           </Flex>
 
                           <Flex mb={2}>
-                            <Text fontWeight="700">Wich wallet do you use to send the payment?</Text>
+                            <Text fontWeight="700">Insert the wallet`s address you will use to send crypto:</Text>
                           </Flex>
                           <Flex mb={2}>
                             <Input value={senderWallet} onChange={handleSenderWalletChange} />
                           </Flex>
 
                           <Flex mb={2}>
-                            <Text fontWeight="700">Your email address used to receive the Licence code</Text>
+                            <Text fontWeight="700">Insert the email where you want to receive the link to finalize the payment (to get the role on DS).</Text>
                           </Flex>
                           <Flex mb={2}>
                             <Input value={userMail} onChange={handleUserMailChange} />
                           </Flex>
 
                           <Flex mb={2}>
-                            <Text fontWeight="700" width="45%">Price</Text>
+                            <Text fontWeight="700" width="45%">USD Price</Text>
                             <Text fontWeight="700">Coin Price</Text>
                           </Flex>
                           <Flex mb={2}>
                             <Input value={currentPrice + " USD"} isReadOnly />
                             <Input value={requiredCoin} isReadOnly ml={2} />
-                            <Button onClick={onCopyPrice} ml={2}>
-                              {hasCopiedPrice ? 'Copied' : 'Copy'}
+                            <Button width={"150px"} onClick={() => { navigator.clipboard.writeText(requiredCoin); setHasCopiedCoin(true); timerResetCopiedCoin(); }} ml={2}>
+                              {hasCopiedCoin ? "Copied" : "Copy"}
                             </Button>
                           </Flex>
 
                           <Flex mb={2} style={{ marginTop: "10%" }}>
                             <Text fontWeight="700" color="orange">Review your data and click next button</Text>
                           </Flex>
-                          <Flex mb={35}>
+                          <Flex mb={60}>
                             <Button width="95vw" onClick={goBackToTimeframe} mr={2}>BACK</Button>
                             <Button width="95vw" onClick={askConfirmation} ml={2}>NEXT 🥋</Button>
                           </Flex>
