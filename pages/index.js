@@ -452,7 +452,7 @@ export default function Home() {
                             <><a
                               style={{ marginLeft: "3px", textDecoration: "underline", color: "orange" }}
                               href="https://discord.gg/odaclan">ticket
-                            </a></>
+                            </a>.</>
                           </Text>
                         </Flex>
                         <Stack spacing={3} mt={4}>
@@ -510,7 +510,7 @@ export default function Home() {
                           </Flex>
 
                           <Flex mb={2} style={{ marginTop: "10%" }}>
-                            <Text fontWeight="700" color="orange">Review your data and click next button</Text>
+                            <Text fontWeight="700" color="orange">Review your data and click next button.</Text>
                           </Flex>
                           <Flex mb={60}>
                             <Button width="95vw" onClick={goBackToTimeframe} mr={2}>BACK</Button>
