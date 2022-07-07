@@ -113,7 +113,7 @@ export default function Home() {
   const askConfirmation = async () => {
     Swal.fire({
       title: 'Are you sure?',
-      text: "After you submit this information you will have 3 hours to complete the payment!",
+      text: "After you submit this information you will have 1 hours to complete the payment!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
