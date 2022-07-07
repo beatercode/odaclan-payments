@@ -315,7 +315,11 @@ export default function Home() {
           height="fit-content"
           mt={10}>
           <Flex mt={2} id="odaLogo" width="100%" textAlign="center">
-            <Image margin={"auto"} width="90%" maxWidth="600px" src='https://i.imgur.com/P1z3KM3.png' alt="" />
+            <Link href="https://odaclan.vercel.app" margin="auto">
+              <a>
+                <Image margin={"auto"} width="90%" maxWidth="600px" src='https://i.imgur.com/P1z3KM3.png' alt="" />
+              </a>
+            </Link>
           </Flex>
           <Text lineHeight="35px" textAlign="center" fontSize="2xl" fontWeight="800" color="white" mt={12}>
             <span style={{ color: "#FFFF00" }}>SAMURAI </span> GATE
