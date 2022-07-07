@@ -52,20 +52,6 @@ export default function Home() {
         <Textarea rows={"auto"} resize={"none"} value={"✅ Exclusive access to bots and software currently in development."} isReadOnly mb={3} />
         <Textarea rows={"auto"} resize={"none"} value={"✅ Access to the incoming ODA Clan NFTs collection’s whitelist"} isReadOnly mb={3} />
       </>
-
-      /*
-      
-      ✅ Exclusive, premium NFTs projects and Crypto analysis.
-      ✅ Periodic, private WL giveaways from the best projects.
-      ✅ Private chatroom.
-      ✅ Extensive info about new and incoming investing possibilities.
-      ✅ Personal profile picture.
-      ✅ Priority 360° support at any time (support team member, one to one conversation by an always open custom ticket).
-      ✅ One of a kind 10 rules guide to invest efficiently in the Crypto and NFTs world.
-      ✅ Exclusive access to bots and software currently in development.
-      ✅ Access to the incoming ODA Clan NFTs collection’s whitelist.
-      
-      */
     )
   }
 
@@ -172,7 +158,7 @@ export default function Home() {
           "toWallet": receiverWallet,
           "dateStart": format(new Date(), 'yyyy-MM-dd'),
           "dateEnd": add(new Date(), { months: 1 }),
-          "plan": "base",
+          "plan": selectedTimeframe == 1 ? "monthly" : "yearly",
           "mail": userMail
         })
     })
