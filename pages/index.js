@@ -442,20 +442,22 @@ export default function Home() {
                           </Text>
                         </Flex>
                         <Stack spacing={3} mt={4}>
-                          <Text fontWeight="700">Select your blockchain and crypto of choice:</Text>
+                          <Text fontWeight="700">Select your crypto and blockchain of choice:</Text>
                           <Select onChange={(e) => targetCoinChange(e)}>
+                            {/*
                             <option value="TEST-ETH">TEST ETH</option>
                             <option value="TEST-BUSD">TEST BUSD</option>
                             <option value="TEST-SOL">TEST SOL</option>
                             <Divider />
-                            <option value="ETH">ETH  | Ethereum</option>
-                            <option value="USDC">USDC | Ethereum</option>
-                            <option value="USDT-ETH">USDT | Ethereum</option>
-                            <option value="BUSD-ETH">BUSD | Ethereum</option>
+                            */}
+                            <option value="ETH">ETH  | Ethereum (ERC20)</option>
+                            <option value="USDC">USDC | Ethereum (ERC20)</option>
+                            <option value="USDT-ETH">USDT | Ethereum (ERC20)</option>
+                            <option value="BUSD-ETH">BUSD | Ethereum (ERC20)</option>
                             <Divider />
-                            <option value="BNB">BNB  | Binance Smart Chain</option>
-                            <option value="USDT-BSC">USDT | Binance Smart Chain</option>
-                            <option value="BUSD-BSC">BUSD | Binance Smart Chain</option>
+                            <option value="BNB">BNB  | Binance Smart Chain (BEP20)</option>
+                            <option value="USDT-BSC">USDT | Binance Smart Chain (BEP20)</option>
+                            <option value="BUSD-BSC">BUSD | Binance Smart Chain (BEP20)</option>
                             <Divider />
                             <option value="SOL">SOL  | Solana</option>
                           </Select>
