@@ -279,6 +279,11 @@ export default function Home() {
     window.open(url, '_blank').focus();
   }
 
+  const doIpCheck = async () => {
+    const res = await axios.get('https://geolocation-db.com/json/344ec440-6bfc-11eb-a0c0-b5dee9e67313')
+    console.log(res.data);
+  }
+
   const valuesRefresh = useCallback(() => {
     setIsLoaded(true)
     targetCoinChange({ target: { value: usedCoin } })
@@ -286,6 +291,7 @@ export default function Home() {
 
   useEffect(() => {
     setHasMounted(true);
+    doIpCheck();
     handleTimeframeChange(2);
   }, [handleTimeframeChange]);
   if (!hasMounted) {
