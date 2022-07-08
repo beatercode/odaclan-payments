@@ -5,6 +5,9 @@ import { useEffect, useState, useCallback } from 'react'
 const axios = require('axios')
 import Swal from 'sweetalert2'
 import { format, add } from 'date-fns'
+import ReactGA from 'react-ga';
+const TRACKING_ID = "G-1RJ6KTCJD1";
+ReactGA.initialize(TRACKING_ID);
 
 export default function Home() {
 
@@ -103,6 +106,10 @@ export default function Home() {
   }, [])
 
   const goBackToTimeframe = () => {
+    setRequiredCoin("")
+    setReceiverWallet("");
+    setUsedCoin("");
+    setUsedChain("");
     setIsTimeframeSelected(false)
   }
 
@@ -267,21 +274,16 @@ export default function Home() {
 
   const goPaymentDatails = useCallback(() => {
     window.scrollTo(0, 0);
-    setUsedCoin("ETH")
-    setUsedChain("ETHEREUM")
+    //setUsedCoin("ETH")
+    //setUsedChain("ETHEREUM")
     setIsTimeframeSelected(true)
-    targetCoinChange({ target: { value: "ETH" } })
-  }, [targetCoinChange])
+    //targetCoinChange({ target: { value: "ETH" } })
+  }, [])
 
   const goFiatPaymentDatails = () => {
     window.scrollTo(0, 0);
     let url = selectedTimeframe == 1 ? "https://hpr.co/EoRIjkW4OPVsMFv3v0YXj" : "https://hpr.co/m38ikmfLRaBsL93s0G153";
     window.open(url, '_blank').focus();
-  }
-
-  const doIpCheck = async () => {
-    const res = await axios.get('https://geolocation-db.com/json/344ec440-6bfc-11eb-a0c0-b5dee9e67313')
-    console.log(res.data);
   }
 
   const valuesRefresh = useCallback(() => {
@@ -291,7 +293,6 @@ export default function Home() {
 
   useEffect(() => {
     setHasMounted(true);
-    doIpCheck();
     handleTimeframeChange(2);
   }, [handleTimeframeChange]);
   if (!hasMounted) {
@@ -460,15 +461,25 @@ export default function Home() {
                             <option value="TEST-SOL">TEST SOL</option>
                             <Divider />
                             */}
+                            <option disabled={true} selected value="">
+                              -- Choose an option --
+                            </option>
+                            <option disabled={true} value="">
+                              -- Ethereum (ERC20) --
+                            </option>
                             <option value="ETH">ETH  | Ethereum (ERC20)</option>
                             <option value="USDC">USDC | Ethereum (ERC20)</option>
                             <option value="USDT-ETH">USDT | Ethereum (ERC20)</option>
                             <option value="BUSD-ETH">BUSD | Ethereum (ERC20)</option>
-                            <Divider />
-                            <option value="BNB">BNB  | Binance Smart Chain (BEP20)</option>
-                            <option value="USDT-BSC">USDT | Binance Smart Chain (BEP20)</option>
-                            <option value="BUSD-BSC">BUSD | Binance Smart Chain (BEP20)</option>
-                            <Divider />
+                            <option disabled={true} value="">
+                              -- Binance Smart Chain (BEP20) --
+                            </option>
+                            <option value="BNB">BNB  | BSC (BEP20)</option>
+                            <option value="USDT-BSC">USDT | BSC (BEP20)</option>
+                            <option value="BUSD-BSC">BUSD | BSC (BEP20)</option>
+                            <option disabled={true} value="">
+                              -- Solana Network (SOLANA) --
+                            </option>
                             <option value="SOL">SOL  | Solana</option>
                           </Select>
                           <Flex mb={2}>
